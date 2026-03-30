@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   description:
     "The only platform where YOU teach the AI — because teaching is the fastest way to learn. Backed by real FAA references. No hallucinations. No shortcuts.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
   openGraph: {
     title: "FlightForge.ai — Master Your Private Pilot Training with AI",

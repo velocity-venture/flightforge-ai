@@ -24,7 +24,7 @@ function Nav() {
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl">✈️</span>
+          <img src="/logo.png" alt="FlightForge" className="h-8 w-8" />
           <span className="font-bold text-lg text-[#0F172A] tracking-tight">
             FlightForge<span className="text-[#2563EB]">.ai</span>
           </span>
@@ -590,7 +590,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-lg">✈️</span>
+              <img src="/logo.png" alt="FlightForge" className="h-6 w-6" />
               <span className="font-bold text-[#0F172A] tracking-tight">
                 FlightForge<span className="text-[#2563EB]">.ai</span>
               </span>
