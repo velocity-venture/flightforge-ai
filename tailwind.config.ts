@@ -1,24 +1,31 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        navy: {
+          DEFAULT: "#0F172A",
+          light: "#1E293B",
+        },
+        slate: {
+          body: "#475569",
+        },
         sky: {
           50: "#f0f9ff",
           100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
           500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
+          600: "#2563EB",
+          700: "#1d4ed8",
         },
-        forge: {
-          DEFAULT: "#1e3a5f",
-          light: "#2d5a8e",
-          dark: "#0f1f33",
+        amber: {
+          400: "#FBBF24",
+          500: "#F59E0B",
+          600: "#D97706",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -36,6 +43,9 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
       },
     },
   },

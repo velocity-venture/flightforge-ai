@@ -1,0 +1,31 @@
+# FlightForge.ai Cloudflare Workers Configuration
+# Unified API Gateway - handles PDF Proxy, Stripe, and Gemini AI
+name = "flightforge-api"
+main = "api-gateway/worker.js"
+compatibility_date = "2024-01-01"
+
+routes = [
+  { pattern = "flightforge.ai/api/*", zone_name = "flightforge.ai" },
+  { pattern = "www.flightforge.ai/api/*", zone_name = "flightforge.ai" }
+]
+
+[vars]
+ENVIRONMENT = "production"
+APP_NAME = "FlightForge.ai"
+APP_VERSION = "1.2.0-brain"
+
+# Secrets (set via CLI):
+# wrangler secret put STRIPE_SECRET_KEY --config workers/wrangler.toml
+# wrangler secret put GEMINI_API_KEY --config workers/wrangler.toml
+
+[env.development]
+name = "flightforge-api-dev"
+vars = { ENVIRONMENT = "development" }
+routes = []
+
+[env.staging]
+name = "flightforge-api-staging"
+vars = { ENVIRONMENT = "staging" }
+routes = [
+  { pattern = "staging.flightforge.ai/api/*", zone_name = "flightforge.ai" }
+]
