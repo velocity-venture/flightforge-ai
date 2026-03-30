@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 
+const API_BASE_URL = "https://flightforge-api.moe3rd.workers.dev";
+
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -51,13 +53,16 @@ function ChatPageInner() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/gemini/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [...messages, { role: "user", content: userMsg }],
-          topic,
-          moduleId,
+          message: userMsg,
+          persona: "captain_reynolds",
+          sessionHistory: messages.map((m) => ({
+            role: m.role,
+            content: m.content,
+          })),
         }),
       });
 
