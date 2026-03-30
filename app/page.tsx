@@ -13,7 +13,7 @@ import {
   BarChart3,
   FileCheck,
   Plane,
-  Quote,
+
 } from "lucide-react";
 
 /* ─────────────────────────────────────────────
@@ -491,64 +491,36 @@ function Pricing() {
 }
 
 /* ─────────────────────────────────────────────
-   G. Social Proof
+   G. Early Access CTA
    ───────────────────────────────────────────── */
-function SocialProof() {
-  const testimonials = [
-    {
-      name: "Alex R.",
-      role: "PPL Student, 45 hours",
-      quote:
-        "Teaching Jordan the correct answers forced me to actually understand the material. I passed my oral on the first try.",
-    },
-    {
-      name: "Sam T.",
-      role: "PPL Student, 32 hours",
-      quote:
-        "The Citation Gate is genius. I couldn't BS my way through — every answer needed a real PHAK reference. My CFI noticed the difference.",
-    },
-    {
-      name: "Morgan K.",
-      role: "PPL Student, 58 hours",
-      quote:
-        "Way better than watching videos. FlightForge made me think, not just memorize. Worth every penny at $97/year.",
-    },
-  ];
-
+function EarlyAccess() {
   return (
     <section className="py-20 lg:py-28 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-[#2563EB] tracking-wide uppercase mb-3">
-            Built for real pilots
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-5">
-            Used by student pilots training for their PPL
-          </h2>
-          <p className="text-lg text-[#475569]">
-            Citations from <strong>3 official FAA publications</strong> — PHAK, AFH, and AIM.
-          </p>
-        </div>
+      <div className="max-w-3xl mx-auto text-center">
+        <div className="rounded-2xl border border-slate-200 bg-white p-10 sm:p-14 shadow-sm">
+          <div className="inline-flex items-center gap-2 rounded-full bg-sky-50 border border-sky-100 px-3.5 py-1.5 text-xs font-medium text-[#2563EB] mb-6">
+            <Plane className="w-3.5 h-3.5" />
+            Early Access
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <div
-              key={t.name}
-              className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <Quote className="w-8 h-8 text-slate-200 mb-4" />
-              <p className="text-[#0F172A] leading-relaxed mb-6">{t.quote}</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">{t.name[0]}</span>
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-[#0F172A]">{t.name}</p>
-                  <p className="text-xs text-[#475569]">{t.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-5">
+            Be among the first pilots to train with AI
+          </h2>
+          <p className="text-lg text-[#475569] leading-relaxed mb-8 max-w-xl mx-auto">
+            FlightForge.ai is in early access. Join now and help shape the future of flight training.
+          </p>
+
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563EB] px-8 py-4 text-base font-semibold text-white shadow-sm hover:bg-[#1d4ed8] transition-colors"
+          >
+            Get Early Access
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+
+          <p className="text-sm text-[#475569] mt-6">
+            Currently free during beta &bull; No credit card required
+          </p>
         </div>
       </div>
     </section>
@@ -656,7 +628,7 @@ export default function LandingPage() {
       <HowItWorks />
       <CitationGate />
       <Pricing />
-      <SocialProof />
+      <EarlyAccess />
       <FAQ />
       <Footer />
     </div>
