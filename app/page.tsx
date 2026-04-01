@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import {
   BookOpen,
@@ -384,6 +387,24 @@ function CitationGate() {
    F. What's Included / Pricing
    ───────────────────────────────────────────── */
 function Pricing() {
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+
+  async function handleCheckout() {
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch("/api/create-checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) throw new Error("Checkout failed");
+      const data = await res.json();
+      window.location.href = data.url;
+    } catch {
+      alert("Unable to start checkout. Please try again.");
+      setCheckoutLoading(false);
+    }
+  }
+
   const features = [
     { icon: <BookOpen className="w-4 h-4" />, text: "All PHAK chapters covered" },
     { icon: <Target className="w-4 h-4" />, text: "ACS standards mapped to every topic" },
@@ -415,7 +436,7 @@ function Pricing() {
             </div>
             <p className="text-[#475569] mb-6">Try 3 topics with full Citation Gate access. No credit card required.</p>
             <Link
-              href="/dashboard"
+              href="/chat"
               className="block w-full text-center rounded-lg border border-slate-200 px-6 py-3 text-sm font-semibold text-[#0F172A] hover:bg-slate-50 transition-colors mb-6"
             >
               Start Free Demo
@@ -448,12 +469,13 @@ function Pricing() {
             </div>
             <p className="text-sm text-[#475569] mb-4">or $14.99/month</p>
             <p className="text-[#475569] mb-6">Unlimited access to every topic, chapter, and AI mentor mode.</p>
-            <Link
-              href="/dashboard"
-              className="block w-full text-center rounded-lg bg-[#2563EB] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1d4ed8] transition-colors mb-6"
+            <button
+              onClick={handleCheckout}
+              disabled={checkoutLoading}
+              className="block w-full text-center rounded-lg bg-[#2563EB] px-6 py-3 text-sm font-semibold text-white hover:bg-[#1d4ed8] transition-colors mb-6 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Get Full Access
-            </Link>
+              {checkoutLoading ? "Redirecting to checkout…" : "Get Full Access"}
+            </button>
             <ul className="space-y-3">
               {features.map((f) => (
                 <li key={f.text} className="flex items-center gap-2.5 text-sm text-[#475569]">
