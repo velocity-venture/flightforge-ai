@@ -1,8 +1,8 @@
-# FlightForge Phase 2 — Modernize Build Brief
+# FlightForge Phase 2. Modernize Build Brief
 
 ## Context
 - **Frontend:** Next.js 14 static export at `/Users/m3_ai_factory/Projects/flightforge-ai/`
-- **API Gateway:** Cloudflare Worker at `flightforge.ai/api/*` (same-origin) — see `workers/api-gateway/worker.js` for exact routes and response shapes
+- **API Gateway:** Cloudflare Worker at `flightforge.ai/api/*` (same-origin), see `workers/api-gateway/worker.js` for exact routes and response shapes
 - **Deploy:** `npm run build && npx wrangler pages deploy out --project-name flightforge --branch main`
 - **Design:** Light theme, Inter font, sky blue (#2563EB) + navy (#0F172A) + amber (#F59E0B)
 
@@ -13,7 +13,7 @@ Request: `{ message: string, persona: "captain_reynolds" | "jordan", enforceGate
 Response: `{ response: string, persona: string, citationAccepted: boolean, citationValidation: { hasCitation, citations[], citationCount, hasSpecificPage } | null, suggestsMastery: boolean, latencyMs: number }`
 
 ### POST `/api/create-checkout`
-Response: `{ url: string, sessionId: string }` — redirect user to `url`
+Response: `{ url: string, sessionId: string }`: redirect user to `url`
 
 ### GET `/api/verify-session?session_id=XXX`
 Response: `{ valid: boolean, customerEmail?: string, status?: string }`
@@ -25,7 +25,7 @@ Response: health status with service availability
 
 ### Task 1: Rewire Chat Page (`app/chat/page.tsx`)
 - Change `API_BASE_URL` from `https://flightforge-api.moe3rd.workers.dev` to empty string `""` (same-origin calls to `/api/*`)
-- Fix response parsing: the Worker returns `data.response` NOT `data.reply` — update accordingly
+- Fix response parsing: the Worker returns `data.response` NOT `data.reply`: update accordingly
 - Add a persona selector UI at the top of the chat: toggle between "Captain Reynolds" (Socratic CFI) and "Jordan" (overconfident student). Default to "captain_reynolds". Send selected persona in the API request body.
 - After each assistant message, display Citation Gate status inline:
   - If `citationValidation.hasCitation` is true: show a green badge "✅ Citation Validated" with the matched references
@@ -52,12 +52,12 @@ Response: health status with service availability
 ### Task 4: Remove OpenAI dependency
 - Run `npm uninstall openai`
 - Search all files for any remaining `openai` imports and remove them
-- The project uses Gemini via the CF Worker — no OpenAI SDK needed
+- The project uses Gemini via the CF Worker, no OpenAI SDK needed
 
 ### Task 5: Build and verify
 - Run `npm run build` to verify static export works with no errors
 - If there are TypeScript errors, fix them
-- Do NOT deploy — just ensure it builds cleanly
+- Do NOT deploy, just ensure it builds cleanly
 
 ## Design Notes
 - Keep the existing Tailwind/shadcn component system
@@ -73,4 +73,4 @@ Response: health status with service availability
 - Change the logo or nav
 
 When completely finished, run this command to notify me:
-openclaw system event --text "Done: FlightForge Phase 2 — Chat wired to Gemini Worker, persona selector + Citation Gate UI added, Stripe checkout connected, success page built, OpenAI removed" --mode now
+openclaw system event --text "Done: FlightForge Phase 2. Chat wired to Gemini Worker, persona selector + Citation Gate UI added, Stripe checkout connected, success page built, OpenAI removed" --mode now
